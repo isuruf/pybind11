@@ -270,10 +270,15 @@ install:
       export CXXFLAGS="-stdlib=libc++"
     fi
 
-    export NPY_NUM_BUILD_JOBS=2
-    echo "Installing pytest, numpy, scipy..."
     local PIP_CMD=""
-    $PY_CMD -m pip install --user --upgrade pytest numpy scipy
+    export NPY_NUM_BUILD_JOBS=2
+    if [ -n "$PYPY" ]; then
+       echo Installing "pytest"
+       $PY_CMD -m pip install --user --upgrade pytest
+    else
+       echo "Installing pytest, numpy, scipy..."
+       $PY_CMD -m pip install --user --upgrade pytest numpy scipy
+    fi
     echo "done."
 
     mkdir eigen
