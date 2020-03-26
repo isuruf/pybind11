@@ -273,7 +273,7 @@ install:
     export NPY_NUM_BUILD_JOBS=2
     echo "Installing pytest, numpy, scipy..."
     local PIP_CMD=""
-    travis_wait 30 $PY_CMD -m pip install --user --upgrade pytest numpy scipy
+    $PY_CMD -m pip install --user --upgrade pytest numpy scipy
     echo "done."
 
     mkdir eigen
